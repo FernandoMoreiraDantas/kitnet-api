@@ -8,4 +8,6 @@ public interface UsuarioService {
 	
 	public Usuario salvarUsuario(Usuario usuario);
 	
+	public Usuario alterarUsuario(String cpf, Usuario usuario);
+	
 }
