@@ -8,4 +8,8 @@ public class TextoUtil {
 		}
 		return false;
 	}
+	
+	public static boolean isCelularValido(String fone) {
+		return fone.matches("^[1-9]{2}[9][1-9]{8}$");
+	}
 }

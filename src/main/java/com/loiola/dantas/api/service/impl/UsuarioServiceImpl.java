@@ -89,6 +89,9 @@ public class UsuarioServiceImpl  implements UsuarioService{
 		if(TextoUtil.isNullOrEmpty(usuario.getFone())) {
 			throw new RegraNegocioException("Informe o telefone.");
 		}
+		if(!TextoUtil.isCelularValido(usuario.getFone())) {
+			throw new RegraNegocioException("Telefone inválido.");
+		}
 		
 		if(TextoUtil.isNullOrEmpty(usuario.getSenha())) {
 			throw new RegraNegocioException("Informe a senha.");

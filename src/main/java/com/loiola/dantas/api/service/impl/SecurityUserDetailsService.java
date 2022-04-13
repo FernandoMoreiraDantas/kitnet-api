@@ -26,7 +26,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuarioLogado = usuarioRepository.findByCpf(username);
 		if(Objects.isNull(usuarioLogado)) {
-			throw new UsernameNotFoundException("Email não cadastrado.");
+			throw new UsernameNotFoundException("CPF não cadastrado.");
 		}
 		
 		
