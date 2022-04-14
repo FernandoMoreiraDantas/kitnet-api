@@ -1,9 +1,14 @@
 package com.loiola.dantas.api.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +63,14 @@ public class UsuarioServiceImpl  implements UsuarioService{
 		return usuarioRepository.save(usuarioConsultado);
 	}
 	
+	
+	@Override
+	public List<Usuario> listar(Usuario usuarioFiltro) {
+		Example<Usuario> example = Example.of(usuarioFiltro, ExampleMatcher.matching().withIgnoreCase().withStringMatcher(StringMatcher.CONTAINING).withIgnoreNullValues());
+		return usuarioRepository.findAll(example);
+	}
+	
+	
 	public boolean isCpfcadastrado(String cpf) {
 		Usuario usuario = usuarioRepository.findByCpf(cpf);
 		return usuario != null;
@@ -65,12 +78,13 @@ public class UsuarioServiceImpl  implements UsuarioService{
 	
 	
 	public void validarUsuario(Usuario usuario, boolean isInclusao) {
-		String cpf = usuario.getCpf();
+		String cpf = TextoUtil.removerMascara(usuario.getCpf());
+		usuario.setCpf(cpf);
 		if(TextoUtil.isNullOrEmpty(cpf)) {
 			throw new RegraNegocioException("Informe o CPF.");
 		}
 		
-		if(!CpfCnpjUtils.isValidCPF(usuario.getCpf())) {
+		if(!CpfCnpjUtils.isValidCPF(cpf)) {
 			throw new RegraNegocioException("o CPF informado é inválido.");
 		}
 		
@@ -85,10 +99,13 @@ public class UsuarioServiceImpl  implements UsuarioService{
 		if(TextoUtil.isNullOrEmpty(usuario.getNome())) {
 			throw new RegraNegocioException("Informe o Nome.");
 		}
+		// Retirando a mascara de telefone
+		usuario.setFone(TextoUtil.removerMascara(usuario.getFone()));
 		
 		if(TextoUtil.isNullOrEmpty(usuario.getFone())) {
 			throw new RegraNegocioException("Informe o telefone.");
 		}
+		
 		if(!TextoUtil.isCelularValido(usuario.getFone())) {
 			throw new RegraNegocioException("Telefone inválido.");
 		}

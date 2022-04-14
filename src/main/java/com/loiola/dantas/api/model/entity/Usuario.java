@@ -36,7 +36,4 @@ public class Usuario {
 	
 	@Column(name = "senha")
 	private String senha;
-	
-	@Column(name = "admin")
-	private boolean admin;
 }

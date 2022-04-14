@@ -20,7 +20,6 @@ public class CpfCnpjUtils {
     }
 
     public static boolean isValidCPF(String cpf) {
-        cpf = cpf.trim().replace(".", "").replace("-", "");
         if ((cpf==null) || (cpf.length()!=11)) return false;
 
         for (int j = 0; j < 10; j++)
