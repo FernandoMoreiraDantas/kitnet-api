@@ -63,6 +63,13 @@ public class JwtServiceImpl implements JwtService {
 		}
 
 	}
+	
+	@Override
+	public Date obterDataHoraExpiracao(String token) {
+		Claims claims = obterClains(token);
+		Date dataEx = claims.getExpiration();
+		return dataEx;
+	}
 
 	@Override
 	public String obterLoginUsuario(String token) {

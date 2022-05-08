@@ -2,6 +2,8 @@ package com.loiola.dantas.api.service;
 
 
 
+import java.util.Date;
+
 import com.loiola.dantas.api.model.entity.Usuario;
 
 import io.jsonwebtoken.Claims;
@@ -16,5 +18,7 @@ public interface JwtService {
 	boolean isTokenValido(String token);
 	
 	String obterLoginUsuario(String token);
+	
+	Date obterDataHoraExpiracao(String token);
 	
 }

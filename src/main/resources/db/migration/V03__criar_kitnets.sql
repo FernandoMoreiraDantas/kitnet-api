@@ -1,0 +1,6 @@
+CREATE TABLE kitnet (
+	id bigserial NOT NULL PRIMARY KEY,
+	nome VARCHAR(50) NOT NULL,
+	descricao VARCHAR(500) NOT NULL,
+	situacao VARCHAR(10) NOT NULL
+);

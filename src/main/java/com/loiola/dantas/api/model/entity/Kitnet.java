@@ -2,6 +2,8 @@ package com.loiola.dantas.api.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,24 +15,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "kitnet")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Kitnet {
 	
 	@Id
-	@Column(name = "codigo")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
-	
-	@Column(name = "cpf")
-	private String cpf; 
-	
+	private Long id;
+
 	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "senha")
-	private String senha;
+	@Column(name = "descricao")
+	private String descricao;
+	
+	@Column(name = "situacao")
+	@Enumerated(EnumType.STRING)
+	private SituacaoEnum situacao;
 }

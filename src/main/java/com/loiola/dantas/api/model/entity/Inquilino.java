@@ -13,17 +13,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "inquilino")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Inquilino {
 	
 	@Id
-	@Column(name = "codigo")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
+	private Long id;
 	
 	@Column(name = "cpf")
 	private String cpf; 
@@ -31,6 +31,6 @@ public class Usuario {
 	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "senha")
-	private String senha;
+	@Column(name = "celular")
+	private String celular;
 }

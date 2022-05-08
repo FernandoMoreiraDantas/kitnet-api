@@ -1,0 +1,6 @@
+CREATE TABLE inquilino (
+	id bigserial NOT NULL PRIMARY KEY,
+	cpf VARCHAR(11) NOT NULL,
+	nome VARCHAR(50) NOT NULL,
+	celular VARCHAR(11) NOT NULL
+);
